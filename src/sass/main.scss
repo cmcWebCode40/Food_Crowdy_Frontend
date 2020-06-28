@@ -1,0 +1,1022 @@
+@import './config';
+@import './themes';
+@import './desktopNav';
+@import './desktopView';
+@import './mixins';
+
+.home {
+	background: $bg-color;
+}
+
+.content {
+	margin: -0.2rem 0;
+	position: relative;
+}
+
+.slide {
+	width: 100%;
+	// height: 50rem;
+}
+
+//**Header components**//
+.header {
+	background: $white;
+	// position: fixed;
+}
+
+.logo {
+	margin: -0.1rem 0 0 0;
+
+	img {
+		height: 5rem;
+	}
+}
+
+.navbar {
+	padding: 1rem 0.1rem;
+	border-bottom: 1px $light solid;
+	&-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		// position: fixed;
+		// width: 100%;
+		background: $white;
+		// box-shadow: $box-shadow2;
+		z-index: 3;
+	}
+	.nav-box {
+		display: flex;
+		margin: 1rem -2rem 0 5rem;
+		li {
+			margin: 0 0.3rem;
+			a {
+				color: $black;
+			}
+		}
+	}
+	.nav-search-bar {
+		margin: 0.7rem 0.4rem;
+		width: 100%;
+		form {
+			margin: 0.3rem auto;
+			position: relative;
+			border: 2px solid $light;
+			width: 70%;
+			height: 2.5rem;
+			background: $light2;
+			border-radius: $border-radius;
+			input {
+				height: 2.2rem;
+				width: 90%;
+				border: none;
+				position: absolute;
+				border-radius: $border-radius;
+				outline: none;
+				background: none;
+				padding: 0.9rem;
+				&:focus {
+					border: none !important;
+				}
+			}
+			button {
+				background: none;
+				border: none;
+				font-size: 1.1rem;
+				position: absolute;
+				right: 0.5rem;
+				top: 0rem;
+				margin: 0.4rem 0;
+			}
+		}
+	}
+}
+
+.menuicon {
+	position: absolute;
+	right: -0.2rem;
+	margin: 1.7rem 0 0 0;
+}
+
+//****Category*****//
+
+.category {
+	text-align: center;
+	a {
+		display: block;
+		margin: 1rem -1rem;
+		img {
+			// height: 12rem;
+			// box-shadow: $box-shadow2;
+			width: 70%;
+			border-radius: $border-radius;
+			background-size: 100% 100%;
+		}
+	}
+}
+
+//****About Page*****//
+
+.about {
+	margin: 0 0.4rem;
+	text-align: center;
+	&-values {
+		margin: 1rem 0 2rem 0;
+		p {
+			font-weight: 600;
+			margin: 0.5rem 0;
+		}
+	}
+	&-desc {
+		h3 {
+			margin: 2rem 0 1rem 0;
+		}
+		p {
+			margin: 1.8rem 0;
+			font-weight: 600;
+			padding: 1rem 3rem;
+		}
+	}
+	&-grid {
+		div {
+			margin: 1rem 0;
+			img {
+				height: 6rem;
+			}
+		}
+	}
+}
+
+//****contatct Page****//
+
+.contact {
+	&-img {
+		text-align: center;
+		width: 100%;
+		img {
+			width: 100%;
+		}
+
+		h4 {
+			font-size: 1.2rem;
+			text-align: center;
+		}
+	}
+	&-imgicon {
+		div {
+			text-align: center;
+			padding: 1rem;
+			img {
+				height: 5rem;
+				// background: $light2;
+			}
+
+			a {
+				color: $black;
+				font-weight: 600;
+			}
+		}
+	}
+	&-content {
+		margin: 1rem 0.4rem;
+		text-align: center;
+		p {
+			margin: 1rem 1rem;
+			padding: 0.8rem;
+		}
+	}
+	.message-us {
+		background: #f4f4f4;
+	}
+
+	h3 {
+		margin: 1rem;
+		text-align: center;
+	}
+
+	&-form {
+		text-align: center;
+		margin: 1rem auto;
+		div {
+			margin: 1rem 0;
+			input {
+				width: 80%;
+				height: 2.6rem;
+				padding: 0.8rem 0.3rem;
+			}
+			textarea {
+				width: 80%;
+			}
+		}
+	}
+}
+
+//**Products**//
+.products {
+	position: relative;
+	&-header {
+		display: flex;
+		justify-content: space-between;
+		padding: 0rem 0.4rem;
+		margin: 0 0.8rem;
+	}
+	.all-btn2 {
+		color: $primary;
+	}
+	h3 {
+		color: $primary;
+		text-align: left;
+		border-bottom: 3px solid $primary;
+	}
+}
+.product-grid-display {
+	border-top: 3px solid $light;
+	margin: 0 auto;
+}
+
+.product-details {
+	margin: 1.3rem 0;
+	h3 {
+		text-align: center;
+		margin: 0rem 0 0 0;
+	}
+	&-items {
+		margin: 0.4rem 1rem;
+	}
+	.desc {
+		.title {
+			display: flex;
+		}
+		span {
+			font-weight: 800;
+		}
+		.desc-price {
+			font-weight: 900;
+			font-size: 1.2rem;
+			// margin: 4rem 0;
+		}
+		.bulkshare-link {
+			border: 2px solid $primary;
+			padding: 1rem 0.5rem;
+			background: $light2;
+			// font-weight: 500;
+		}
+		.bulkshare-form {
+			div {
+				margin: 1rem 0;
+				label {
+					font-weight: 600;
+					margin: 0 0.2rem;
+				}
+			}
+			.bulkshare-total {
+				border-top: 1px solid $light;
+				margin: 1rem 0;
+				padding: 1rem 0;
+				p {
+					font-weight: 700;
+				}
+				&-quote {
+					span {
+						font-weight: 400;
+					}
+				}
+			}
+		}
+
+		.desc-box {
+			margin: 4.3rem 0 0 0;
+		}
+		p {
+			margin: 0.2rem;
+			padding: 0.3rem 0;
+		}
+	}
+	.btn-details {
+		display: flex;
+		div {
+			display: inline;
+		}
+		button {
+			margin: 1rem 0.4rem;
+		}
+	}
+	.pay-btn {
+		display: flex !important;
+	}
+}
+
+.items {
+	&-title {
+		display: flex;
+		justify-content: center;
+		h3 {
+			margin: auto 0;
+			align-items: center;
+		}
+		span {
+			display: block;
+			height: 0.3rem;
+			background: #008080;
+			width: 10%;
+		}
+	}
+	&-card {
+		cursor: pointer;
+		position: relative;
+		.discount {
+			position: absolute;
+			background: $secondary;
+			padding: 0.8rem 2rem;
+			margin: 0.6rem 0;
+			border-top-right-radius: 1.3rem;
+			border-bottom-right-radius: 1.3rem;
+			font-weight: 600;
+			font-size: 1.2rem;
+		}
+	}
+}
+
+//*****Card Items******//
+.card {
+	border-radius: $border-radius;
+	margin: 2rem 1.7rem;
+	// width: 80%;
+	background: white;
+	border: 1px solid $light;
+	&:hover {
+		box-shadow: $box-shadow;
+	}
+	&-img {
+		img {
+			width: 100%;
+		}
+	}
+	&-body {
+		margin: 0.5rem 0.5rem;
+		text-align: left;
+		h4 {
+			padding: 0.4rem 0;
+			font-size: 1.3rem;
+			margin: 0.5rem 0;
+		}
+		small {
+			margin: 0.6rem 0;
+			font-weight: 600;
+		}
+		.add-to-cart {
+			display: flex;
+			justify-content: space-between;
+			padding: 0 0.4rem;
+			margin: 1rem -0.5rem;
+			button {
+				background: $primary;
+				color: $white;
+			}
+			&-icon {
+				cursor: pointer;
+				color: $light;
+				text-align: center;
+				font-size: 2.1rem;
+				background: inherit;
+				border: none;
+				// display: none;
+				&:hover {
+					background: $light2;
+					// border-radius: 50%;
+				}
+			}
+		}
+	}
+	.card-btn {
+		border: 2px solid $primary;
+		color: $primary;
+		border-radius: $border-radius;
+	}
+	.card-price {
+		border-top: 1px solid $light;
+		border-bottom: 1px solid $light;
+		font-size: 1.3rem;
+		padding: 0.7rem 0;
+		margin: 0.4rem 0;
+	}
+}
+
+//****Shopping Page****//
+.shoping {
+	background: $light2;
+	.shop-title {
+		margin: 1rem 0.3rem;
+		background: $white;
+		box-shadow: $box-shadow;
+		border-radius: $border-radius;
+		h3 {
+			margin: 0.5rem 0.8rem;
+			background: $white;
+			padding: 1rem 0.5rem;
+		}
+	}
+	&-search {
+		padding: 0.4rem;
+		form {
+			margin: 1rem 0.4rem;
+			input {
+				border-radius: $border-radius;
+				border: 2px solid $light;
+				width: 60%;
+			}
+		}
+		background: $white;
+		box-shadow: $box-shadow;
+		border-radius: $border-radius;
+		margin: 1rem;
+	}
+}
+
+//*** bulk  share and buy****//
+
+.bulkbuy-details {
+	&-share {
+		padding: 1rem;
+		background: $light;
+		p {
+			margin: 0.6rem;
+		}
+	}
+	button {
+		margin: 0.9rem 0;
+	}
+}
+
+//**Content Components
+.mission {
+	margin: 3rem 0.5rem;
+	text-align: center;
+	p {
+		margin: 2rem 1rem;
+	}
+}
+
+.services {
+	background: $black;
+	color: $white;
+	text-align: center;
+	margin: 0.5rem auto 0 auto;
+	p {
+		margin: 0.7rem 0;
+	}
+	&-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		margin: 1rem auto;
+		justify-content: center;
+	}
+	&-item {
+		border-left: 0.2px solid $light2;
+		.item-list {
+			& > * {
+				margin: 1rem 0.5rem;
+			}
+			img {
+				height: 3rem;
+				margin: 0 0.5rem;
+			}
+		}
+		&-desc {
+			h4 {
+				font-weight: 500;
+				margin: 0.7rem 0;
+			}
+		}
+	}
+}
+
+//****shipment*****//
+
+.shipment {
+	width: 450px;
+	margin: 2rem auto;
+	// @include center();
+
+	h3 {
+		color: $primary;
+		margin: 0.5rem 0;
+	}
+	&-title {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&-user,
+	&-cost {
+		border-radius: $border-radius;
+		box-shadow: $box-shadow2;
+		background: $white;
+		margin: 0.3rem;
+		padding: 0.4rem;
+		h6 {
+			font-size: 1.2rem;
+			margin: 0.4rem 0;
+		}
+		p {
+			margin: 0.5rem 0;
+			padding: 0.4rem 0;
+			border-bottom: 1px solid $light2;
+		}
+	}
+
+	&-cost {
+		.total {
+			font-weight: 700;
+		}
+		.cost-grid {
+			display: flex;
+			justify-content: space-between;
+			border-bottom: 1px solid $light2;
+			p:nth-child(2) {
+				font-weight: 600;
+			}
+		}
+	}
+}
+
+//****checkout*****//
+
+.checkout {
+	&-total {
+		border-radius: $border-radius;
+		background: $white;
+		box-shadow: $box-shadow2;
+		padding: 0.4rem 0.6rem;
+		margin: 1rem 0.3rem;
+	}
+	&-title {
+		display: flex;
+		justify-content: space-between;
+		margin: 0.4rem 0;
+		padding: 0.5rem 0;
+	}
+	&-form {
+		text-align: left;
+		width: 100%;
+		box-shadow: 0px 3px 16px 1px #ddd;
+		margin: 0.7rem 0.5rem;
+		h3 {
+			padding: 1rem 0;
+			border-bottom: 1px solid $light;
+		}
+		P,
+		select {
+			margin: 0.4rem;
+		}
+
+		select {
+			border: 2px solid $secondary;
+			border-radius: $border-radius;
+			padding: 0.3rem 0.8rem;
+		}
+
+		form {
+			div {
+				padding: 0.2rem;
+				label {
+					margin: 0.4rem;
+				}
+				input,
+				textarea {
+					border-radius: $border-radius;
+					border: 1px solid $light;
+					padding: 0.5rem;
+					width: 100%;
+					margin: 0.6rem 0;
+				}
+				button {
+					margin: 0.5rem;
+					padding: 0.5rem 4rem;
+					font-weight: 700;
+				}
+			}
+		}
+	}
+}
+
+//*registration component*//
+.login {
+	h2 {
+		text-align: center;
+		margin: 2rem;
+		font-weight: 900;
+	}
+}
+
+//****Cart-Tables****//
+
+.mobile-cart {
+	box-shadow: $box-shadow;
+	border-radius: $border-radius;
+	padding: 0.5rem 0;
+	margin: 0 0.6rem;
+	&-grid {
+		display: grid;
+		grid-template-columns: 1fr 2fr;
+		margin: 0.4rem;
+
+		.block2 {
+			border-left: 1px solid $light;
+			small {
+				margin: 1rem 0.7rem;
+			}
+			& > * {
+				margin: 0 0 0.6rem 0.7rem;
+			}
+			p {
+				font-weight: 600;
+				border-top: 1px solid $light2;
+				padding: 0.2rem 0;
+				// margin: 1rem 0;
+				word-wrap: break-word;
+				span {
+					color: $primary;
+				}
+			}
+		}
+	}
+	&-bottom {
+		border-top: 1px solid $light2;
+		padding: 0.5rem 0;
+		margin: 0rem 0.3rem;
+		color: red;
+	}
+}
+.cart {
+	// margin: 0.5rem 0 1rem 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	// text-align: center;
+	flex-flow: column nowrap;
+
+	h3 {
+		margin: 1.3rem 0.8rem;
+	}
+	&-empty {
+		margin: 1rem auto;
+		text-align: center;
+		p {
+			margin: 1rem 0;
+		}
+		button {
+			margin: 1rem 0;
+		}
+	}
+
+	&-steps {
+		display: flex;
+		div {
+			background: $secondary;
+			text-align: left;
+			padding: 0.3rem 1.2rem;
+			margin: 0.6rem 0.3rem;
+			color: $black;
+			width: 20rem;
+			&:nth-child(2) {
+				background: $light;
+			}
+		}
+	}
+	&-checkout {
+		& > * {
+			margin: 1rem 0.7rem;
+			display: block;
+		}
+		a {
+			button {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.cartR-title {
+	text-align: left;
+}
+
+.cart-table {
+	display: none;
+	box-shadow: $box-shadow;
+	.cart-image {
+		display: flex;
+		span {
+			margin: 1.2rem 0.4rem;
+			flex-wrap: inherit;
+		}
+	}
+	tr {
+		cursor: pointer;
+	}
+
+	th,
+	td {
+		padding: 0.9rem 1.3rem;
+		border-left: 1px $light2 solid;
+	}
+	th {
+		background-color: $light;
+	}
+	td {
+		border-bottom: 1px solid $light;
+	}
+	&-total {
+		text-align: right;
+	}
+}
+
+.review {
+	margin: 1rem 1.4rem;
+	&-title {
+		h4 {
+			margin: auto 0;
+		}
+		padding: 0.5rem 1rem;
+		background: $light;
+		display: flex;
+		justify-content: space-between;
+	}
+	&-box {
+		.rating {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+			span {
+				margin: 1rem 0.7rem;
+			}
+			&-bar {
+				display: block;
+				height: 0.7rem;
+				width: 50%;
+				background: $light;
+				margin: 1rem 0;
+			}
+		}
+		.graph {
+			width: 70%;
+			margin: 0.6rem 4rem;
+			h5,
+			p {
+				font-size: 1.3rem;
+				font-weight: 900;
+			}
+		}
+	}
+
+	&-comments {
+		margin: 0.2rem auto;
+		h5 {
+			border-bottom: 1px solid $light;
+			padding: 0.5rem 0;
+		}
+		p {
+			padding: 0.4rem 0;
+		}
+	}
+	.comment-message {
+		textarea {
+			padding: 0.5rem;
+			border-radius: $border-radius;
+			margin: 0.5rem 0;
+		}
+	}
+}
+
+//**User Dashboard***//
+.user {
+	margin: 1rem;
+	width: 90%;
+	h4{
+		margin: 0 1.3rem  ;
+		text-transform: capitalize;
+		letter-spacing: .1rem ;
+	}
+	&-active {
+		border-left: 3px solid $primary;
+	}
+	ul {
+		margin: 1.3rem;
+		border: 1px solid $light;
+		li {
+			border-bottom: 1px solid $light;
+			padding: 1rem 0.7rem;
+			&:hover {
+				background: $light;
+			}
+			a {
+				color: $black;
+				font-weight: 400;
+			}
+		}
+	}
+}
+.user-account {
+	&-grid {
+		.wallets {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+
+			.wallet {
+				background: $white;
+				border-radius: $border-radius;
+				box-shadow: $box-shadow;
+				padding: 0.5rem;
+				margin: 0.5rem;
+				text-align: left;
+				& > * {
+					margin: 0.3rem 0;
+				}
+				span {
+					display: block;
+					height: 0.5rem;
+					border-radius: $border-radius;
+					width: 40%;
+					&.view1 {
+						background: rgb(235, 55, 23);
+					}
+					&.view2 {
+						background: rgb(41, 192, 41);
+					}
+					&.view3 {
+						background: rgb(235, 235, 61);
+					}
+					&.view4 {
+						background: rgb(89, 89, 248);
+					}
+				}
+			}
+		}
+	}
+	display: block;
+	margin: 2rem 1rem;
+	&-account-grid {
+		margin: 0 -2rem;
+	}
+	&-img {
+		display: grid;
+		grid-template-columns: 0.24fr 1fr;
+		justify-content: space-evenly;
+		.img-file {
+			margin: auto 1rem;
+		}
+	}
+
+	.user-form {
+		div {
+			margin: 1rem;
+			label {
+				display: block;
+				margin: 0.3rem;
+			}
+			input,
+			textarea {
+				width: 80%;
+				border-radius: $border-radius;
+				border: 2px solid $light;
+			}
+		}
+	}
+}
+
+.user-btn {
+	margin: 0.8rem 0;
+}
+
+.orders {
+	p {
+		margin: 2rem 0;
+		border-top: 0.7px solid $light;
+		padding: 1rem 0;
+	}
+
+	small {
+		margin: 0 0 1rem 0;
+	}
+}
+
+//****Help FAQs*****//
+
+.help {
+	background: $light2;
+	&-title {
+		background: $white;
+		padding: 0.8rem 0.6rem;
+		box-shadow: $box-shadow2;
+	}
+	&-img {
+		background: rgba($primary, 0.7);
+		padding: 0.5rem;
+		margin: 0.6rem;
+		p {
+			color: $white;
+		}
+	}
+	&-body {
+		background: $white;
+		box-shadow: $box-shadow;
+		margin: 0.7rem;
+		border-radius: $border-radius;
+		padding: 1rem;
+		&-card {
+			border-bottom: 1px solid $light2;
+			margin: 3rem 0;
+			h3 {
+				margin: 1rem 0;
+				color: $primary;
+				font-size: 1.7rem;
+			}
+			p {
+				margin: 0.4rem 0;
+				padding: 0.6rem 0;
+			}
+		}
+	}
+}
+
+//**Footer Components**//
+.footer {
+	background: $primary;
+	color: $white;
+	h5 {
+		font-size: 1.5rem;
+		margin: 1rem 0 0 0;
+	}
+	&-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		margin: 0.5rem;
+		.list-item {
+			margin: 0.5rem 0.3rem;
+		}
+	}
+	ul {
+		margin: 0.6rem 0;
+		li {
+			margin: 0.5rem 0;
+		}
+	}
+	a {
+		color: $white;
+		margin: 0 0.5rem 0 0;
+		&:hover {
+			color: $secondary;
+			transform: scale(0.4);
+		}
+	}
+	&-form {
+		input {
+			color: $black;
+			height: 2.2rem;
+			border: 1px solid $light;
+			border-radius: $border-radius;
+			outline: none;
+			width: 100%;
+			padding: 0.6rem;
+			margin: 0.7rem 0;
+			::placeholder {
+				color: $white;
+			}
+			&:focus {
+				border: 1px solid $primary;
+			}
+		}
+	}
+	&-bottom {
+		text-align: center;
+		background: $black;
+		padding: 1rem;
+	}
+}
+
+.footercontact {
+	ul {
+		li {
+			margin: 0.6rem;
+			a {
+				margin: 0 0.6rem;
+			}
+		}
+	}
+}
+
+//**Error 404 page***//
+
+.error {
+	text-align: center;
+	margin: 1rem;
+	div {
+		h1,
+		p,
+		button {
+			margin: 0.5rem;
+		}
+		img {
+			height: 7rem;
+		}
+	}
+}

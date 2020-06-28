@@ -1,0 +1,60 @@
+@import './themes';
+@import './config';
+
+.top-message {
+	// background-color: $light;
+	border-bottom: 0.5px solid $light;
+	padding: 0.2rem;
+	display: none;
+	justify-content: space-between;
+	& > * {
+		margin: 0.4rem 1.3rem;
+	}
+}
+
+.largenav {
+	display: none;
+	justify-content: space-between;
+	margin: 0.4rem 0.3rem;
+	padding: 0.6rem 0;
+
+	&-links {
+		display: flex;
+		margin: 0.5rem 0.3rem 0rem 0.8rem;
+		padding: 1rem 0;
+		flex-basis: 30%;
+
+		& > * {
+			margin: 0 1rem;
+		}
+	}
+	&-search {
+		flex-basis: 50%;
+		margin: 0.6rem 0 -2rem 9rem;
+		form {
+			input {
+				height: 2.5rem;
+				border: 1px solid $light;
+				border-radius: $border-radius;
+				outline: none;
+				width: 70%;
+				background: none;
+				padding: 0.8rem;
+				margin: 0.7rem 0;
+				&:focus {
+					border: 1px solid $primary;
+				}
+			}
+			button {
+				margin: 0 0.3rem;
+				span {
+					color: $white;
+				}
+			}
+		}
+	}
+}
+
+.appbar {
+	display: none;
+}

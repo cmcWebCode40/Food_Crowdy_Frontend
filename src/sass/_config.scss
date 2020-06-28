@@ -1,0 +1,252 @@
+@import './themes';
+// @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+
+//***image content resolution*****//
+//1440 x 360
+html {
+	scroll-behavior: smooth;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	overflow-x: hidden;
+	a {
+		text-decoration: none;
+		color: inherit;
+	}
+}
+
+body {
+	// font-family: 'Montserrat', sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+	font-weight: 700 !important;
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style-type: none;
+}
+
+h3 {
+	font-size: 1.5rem;
+}
+
+.line {
+	height: 0.3rem;
+	background: $primary;
+	border-radius: $border-radius;
+	width: 7rem;
+	margin: 0.5rem auto;
+}
+
+.color-black {
+	color: $black;
+}
+
+.all-btn {
+	margin: 0 0.6rem 0 0;
+	a {
+		color: $white;
+	}
+}
+
+//**default input fields****//
+input {
+	height: 2rem;
+	&:focus {
+		border: 2.4px solid $secondary !important;
+		outline: none;
+	}
+}
+textarea {
+	&:focus {
+		border: 1.4px solid $secondary !important;
+		outline: none;
+	}
+}
+
+.notify {
+	color: $white;
+	background: rgb(250, 86, 86);
+	margin: 2rem 0 0 0;
+	padding: 0.7rem 0.5rem;
+	border-radius: $border-radius;
+}
+
+.custom-btn {
+	border-radius: 0.2rem;
+	padding: 0.6rem 2rem;
+	font-weight: 900;
+	border: none;
+	color: $white;
+	cursor: pointer;
+	&-primary {
+		color: $black;
+		background: $secondary;
+		&:hover {
+			background: rgba($secondary, 0.7);
+		}
+	}
+	&-secondary {
+		color: $white;
+		background-color: $primary;
+		&:hover {
+			background: rgba($primary, 0.7);
+		}
+	}
+
+	&-success {
+		background: $success;
+		&:hover {
+			background: rgba($success, 0.9);
+		}
+	}
+}
+
+.line {
+	height: 0.3rem;
+	width: 3rem;
+	margin: 0.7rem auto;
+	background: $secondary;
+	border-radius: $border-radius;
+	&-primary {
+		background: $primary;
+	}
+}
+
+.loader {
+	height: 100%;
+	width: 100%;
+}
+
+.discount {
+	position: absolute;
+	background: $secondary;
+	padding: 0.8rem 2rem;
+	margin: 0.6rem 0;
+	border-top-right-radius: 1.3rem;
+	border-bottom-right-radius: 1.3rem;
+	font-weight: 600;
+	font-size: 1.2rem;
+}
+
+.heading {
+	display: flex;
+	justify-content: center;
+	margin: 2.4rem 0 0 0;
+	align-items: center;
+	h3 {
+		background: $black;
+		color: $white;
+		border-radius: $border-radius;
+		padding: 0.6rem;
+	}
+	span {
+		display: block;
+		border-radius: $border-radius;
+		background: $primary;
+		height: 0.3rem;
+		width: 5rem;
+		margin: 0 0.4rem;
+	}
+}
+
+//**cart Badge Icons ****//
+.badge {
+	height: 1.3rem;
+	width: 1.3rem;
+	text-align: center;
+	color: $white;
+	font-weight: 700;
+	background: $primary;
+	padding: 0.05rem 0.03em;
+	position: absolute;
+	top: 5.2rem;
+	margin: -0.3rem 0.3rem;
+	z-index: 3;
+	border-radius: 50%;
+	&-sm {
+		top: -0.1rem;
+		margin: 1.6rem 0;
+	}
+}
+
+//****pagination*****//
+.active-btn {
+	background: $light2;
+	// padding: 0.4rem 0.6rem;
+	// border: 1px solid $light;
+	color: $black;
+	// &:hover {
+	// 	background: $secondary;
+	// 	border-radius: none;
+	// 	border: none;
+	// 	padding: 0.4rem 0.6rem;
+	// }
+	&:active {
+		background: $secondary;
+		border-radius: none;
+		border: none;
+		padding: 0.4rem 0.6rem;
+	}
+}
+
+//*****carousel custom buttons*****//
+.custom-arrow {
+	position: absolute;
+	top: 0rem;
+	right: 0;
+	margin: 1rem 3rem;
+}
+
+.slide-btn {
+	background: $primary;
+	outline: none;
+	border: none;
+	border-radius: 50%;
+	// border: 2px solid $light;
+	padding: 0.5rem 0.7rem;
+	color: $white;
+	margin: 0 0.5rem;
+	cursor: pointer;
+}
+
+.sbtn-1 {
+	right: 0;
+}
+
+.btn-move {
+	display: none;
+	background: transparent;
+	height: 3rem;
+	width: 3rem;
+	border: 2px solid $light;
+	color: $white;
+	border-radius: 50%;
+	outline: none;
+}
+.btn-slide1 {
+	position: absolute;
+	top: 7rem;
+	margin: 0 4rem;
+	left: 0;
+}
+.btn-slide2 {
+	position: absolute;
+	top: 7rem;
+	right: 0;
+	margin: 0 4rem;
+}
+
+.slide-btn:hover {
+	background: rgba($black, 0.9);
+}
