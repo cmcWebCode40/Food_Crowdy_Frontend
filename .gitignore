@@ -1,0 +1,7 @@
+products_service/node_modules
+orders_service/node_modules
+users_service/node_modules
+deliveries_service/node_modules
+bulkshare_service/node_modules
+admin_service/node_modules
+agent_service/node_modules
