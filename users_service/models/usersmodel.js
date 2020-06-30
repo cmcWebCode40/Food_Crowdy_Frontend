@@ -19,11 +19,21 @@ const usersSchema = new Schema({
         type: String,
         required: true
     },
+    wallet: {
+        type: Number,
+        default: 0
+    },
+    phoneNumber: {
+        type: String,
+        required: true
+    },
     
     cart: [{}],
     
     complaints: [],
-
+    
+    walletHistory: [],
+    
     temperament: [],
      
     tokens: [{token:{

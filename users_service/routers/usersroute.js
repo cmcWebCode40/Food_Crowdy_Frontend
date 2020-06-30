@@ -179,10 +179,6 @@ router.get("/checkout/:id", async (req, res, next) => {
             let id = arrayOfCartItemIds[i];            
             const product = await axios.get(`http://localhost:5000/products/${id}`);
             console.log(product.data, i);
-            
-            
-            
-            
         }
         
     } 
@@ -318,6 +314,58 @@ router.get("/myprocessingbulkshares/:id", async (req, res) => {
       res.status(500).send()  
     }
     
+})
+
+// GET route for checking user wallet balance
+router.get("/viewwallet/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        res.send({balance: user.wallet})
+    } catch (error) {
+      res.status(500).send()  
+    } 
+})
+
+// GET route for rendering wallet payment view
+router.get("/fundwallet/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        res.send({user})
+    } catch (error) {
+      res.status(500).send()  
+    } 
+})
+
+// POST route for making payment to wallet
+router.post("/fundwallet/:id", async (req, res) => {
+    // Some third party payment code goes here
+    try {
+        const user = await User.findById(req.params.id)
+        let newBalance = user.wallet + req.body.amount
+        let updatedUserWallet = await User.findByIdAndUpdate(req.params.id, {"wallet": newBalance})
+        if(updatedUserWallet){
+            user.walletHistory = user.walletHistory.concat({
+                type: "credit",
+                amount: req.body.amount,
+                balance: user.wallet + req.body.amount,
+                date: new Date()
+            })
+            await user.save()
+        }
+        res.status(200).send()
+    } catch (error) {
+      res.status(500).send()  
+    } 
+})
+
+// GET route for displaying wallet transactions 
+router.get("/wallettransactions/:id", async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id)
+        res.send({history: user.walletHistory})
+    } catch (error) {
+      res.status(500).send()  
+    } 
 })
 
 module.exports = router
