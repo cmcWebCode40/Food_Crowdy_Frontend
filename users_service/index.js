@@ -12,7 +12,7 @@ mongoose.connection.once("open", ()=>{
 }).on("error", ()=>{
   console.log("Error connecting to USER database")
 })
-const PORT = process.env.PORT || 6000
+const PORT = process.env.PORT || 6001
 app.listen(PORT, ()=>{
   console.log(`Listening on USER port ${PORT}`)  
 })

@@ -62,6 +62,18 @@ router.get("/findupdaterequests/:id", async (req, res) => {
     }
 })
 
+// POST route to approve pending uploaded products
+router.post("/approvepending/:id", async (req, res) => { 
+    try {
+      const approvedProductData = await axios.get(`http://localhost:5000/products/approvepending/${req.params.id}`)
+      if(pendingProductsData){
+          res.status(200).send()
+      }
+    } catch (error) {
+
+    }
+})
+
 // Helper DELETE route for removing products
 router.delete("/remove/:id", async (req, res) => {
     try {
@@ -86,16 +98,5 @@ router.post("/update/:id", async (req, res) => {
     }
 })
 
-// POST route to approve pending uploaded products
-router.post("/approvepending/:id", async (req, res) => { 
-    try {
-      const approvedProductData = await axios.get(`http://localhost:5000/products/approvepending/${req.params.id}`)
-      if(pendingProductsData){
-          res.status(200).send()
-      }
-    } catch (error) {
-
-    }
-})
 
 module.exports = router

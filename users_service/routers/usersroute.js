@@ -108,6 +108,7 @@ router.post("/logout", loginAuth, async (req, res) => {
         res.status(500).send()
     }
 })
+// GET route to render usercart and total quantity of cart items
 router.get("/rendercart/:id", async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
@@ -168,10 +169,21 @@ router.get("/checkoutverification",  auth, async (req, res, next) => {
         console.error(error)
     }
 })
-router.get("/checkout", async (req, res, next) => {
+router.get("/checkout/:id", async (req, res, next) => {
     try {
         // Client to send sumTotal and address in req.query for payment integration function and for inclusion 
         // of new address to bulkshare database. API sends it back to be sent again in post
+        const user = await User.findById(req.params.id)
+        let arrayOfCartItemIds = Object.keys(user.cart[0].items)
+        for (let i = 0; i < arrayOfCartItemIds.length; i++) {
+            let id = arrayOfCartItemIds[i];            
+            const product = await axios.get(`http://localhost:5000/products/${id}`);
+            console.log(product.data, i);
+            
+            
+            
+            
+        }
         
     } 
     catch (error) {

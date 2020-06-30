@@ -6,7 +6,7 @@ const axios = require("axios")
 // POST route for creation of new user complaints
 router.post("/create/:id", async (req, res) => {
     try {
-        const user = await axios.get(`http://localhost:6000/users/search/${req.params.id}`)
+        const user = await axios.get(`http://localhost:6001/users/search/${req.params.id}`)
         const complaint = await new Complaint({
             userId: user._id,
             email: req.body.email,

@@ -2,7 +2,17 @@ const express = require("express");
 const router = express.Router();
 const Bulkshare = require("../models/bulksharemodels")
 
-// POST route to instantiate new bulkshare document (trigged by axios on users/checkout/:id on payment completion)
+// GET route for landing page for joining a bulkshare (join bulkshare button GET route comes from user routes file)
+router.get("/join/:id", async (req, res)=>{
+    try {
+        const bulkShareOrder = await Bulkshare.findById(req.params.id)
+        res.send(bulkShareOrder)
+    } catch (error) {
+        res.status(404).send()
+    }
+})
+
+// Helper POST route to instantiate new bulkshare document (trigged by axios on users/checkout/:id on payment completion)
 router.post("/create", async (req, res)=>{
     try {
         const createdBulkshareorder = await Bulkshare.create({
@@ -19,15 +29,7 @@ router.post("/create", async (req, res)=>{
         console.error(error)
     }
 })
-// GET route for landing page for joining a bulkshare
-router.get("/join/:id", async (req, res)=>{
-    try {
-        const bulkShareOrder = await Bulkshare.findById(req.params.id)
-        res.send(bulkShareOrder)
-    } catch (error) {
-        res.status(404).send()
-    }
-})
+
 // Helper GET route to find if a product has been purchased by a user (trigged by axios on products/details/:id)
 router.get("/myorders", async (req, res)=>{
     try {
@@ -61,8 +63,9 @@ router.get("/myprocessingorders/:id", async (req, res)=>{
 router.get("/sharestatus/:id", async (req, res)=>{
     try {
     const activeShare = await Bulkshare.find({'product._id': req.params.id}).sort({createdAt: -1})
-    const arrayLength = activeShare.length
-    res.send(activeShare[arrayLength -1])
+    const arrayLength = activeShare.length;
+    console.log(activeShare[arrayLength -1]);
+    res.send(activeShare[arrayLength -1]);
     } catch (error) {
         console.log(error)
     }

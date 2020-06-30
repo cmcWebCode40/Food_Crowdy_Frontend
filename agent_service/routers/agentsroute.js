@@ -58,7 +58,6 @@ router.get("/deleterequest/:id", async (req, res) => {
 })
 
 // POST route to make delete request for uploaded product
-
 router.post("/deleterequest/:id", async (req, res) => { 
     try {
       let product = await axios.get(`http://localhost:5000/products/${req.params.id}`)

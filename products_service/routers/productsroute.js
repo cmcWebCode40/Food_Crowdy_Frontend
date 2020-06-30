@@ -3,7 +3,7 @@ const router = express.Router();
 const Product = require("../models/productsmodel");
 const axios = require("axios")
 
-// GET route to display all products
+// GET route to display all approved products
 router.get("/all", async (req, res) => {
     let searchOptions = {}
     if (req.query.title != null && req.query.title !== "") {
@@ -15,6 +15,7 @@ router.get("/all", async (req, res) => {
         res.send(productList)
     }
 })
+// GET route to display all approved products by category
 router.get("/category/:category", async (req, res) => {
     let searchOptions = {}
     if (req.query.title != null && req.query.title !== "") {
@@ -27,7 +28,7 @@ router.get("/category/:category", async (req, res) => {
     }
 })
 
-// GET route to find a single product
+// Helper GET route to find a single product
 router.get("/:id", async (req, res) => {
     try {
         const product = await Product.findById(req.params.id)
@@ -36,22 +37,24 @@ router.get("/:id", async (req, res) => {
         res.status(403)
     }
 })
-// GET route to find a single product checking if user has bought the item
+// GET route to find a single product checking if user has joined a bulkshare for the product
 router.get("/details/:id", async (req, res) => {
     try {
         const hasBought = await axios.get(`http://localhost:8000/bulkshares/myorders?userId=${req.query.userId}&productId=${req.params.id}`);
+        const activeShareData = await axios.get(`http://localhost:8000/bulkshare/sharestatus/${req.params.id }`)
         const item = await Product.findOne({ _id: req.params.id })
         console.log(hasBought.data)
         if (hasBought.data) {
-            res.send({ hasBought: true, item })
+            res.send({ hasBought: true, item, bulkShare: activeShareData.data || null })
         } else {
-            res.send({ hasBought: false, item })
+            res.send({ hasBought: false, item, bulkShare: activeShareData.data || null })
         }
     } catch (error) {
         res.sendStatus(500)
     }
 })
 
+// POST route for adding a review to a product
 router.post("/details/review/:id", async (req, res) => {
     try {
         let review = req.body.body
@@ -63,17 +66,18 @@ router.post("/details/review/:id", async (req, res) => {
     }
 })
 
-//GET route to add product to cart
+// GET route to add product to cart
 router.get("/add-to-cart/:id", async (req, res) => {
     if (req.query.userId != undefined) {
         try {
             const item = await Product.findOne({ _id: req.params.id })
-            item.numberOfParts = req.query.numberOfParts
-            const response = await axios.post(`http://localhost:6000/users/add-to-cart?userId=${req.query.userId}&productId=${req.params.id}`, item)
+            newItem = {...item}
+            newItem._doc.numberOfParts = parseInt(req.query.numberOfParts)
+            const response = await axios.post(`http://localhost:6001/users/add-to-cart?userId=${req.query.userId}&productId=${req.params.id}`, newItem._doc)
             if (response.data.cart[0] != undefined) {
                 res.status(200).send()
             }
-            console.log(response.data.cart[0])
+            // console.log(response.data.cart[0])
         } catch (error) {
             res.sendStatus(500)
         }
@@ -84,11 +88,11 @@ router.get("/add-to-cart/:id", async (req, res) => {
 
 })
 
-//GET route to completely remove an item from cart
+// GET route to completely remove an item from cart
 router.get("/removecartitem/:id", async (req, res) => {
     if (req.query.userId != undefined) {
         try {
-            const response = await axios.get(`http://localhost:6000/users/removecartitem?userId=${req.query.userId}&productId=${req.params.id}`)
+            const response = await axios.get(`http://localhost:6001/users/removecartitem?userId=${req.query.userId}&productId=${req.params.id}`)
             if (response.data != undefined) {
                 res.status(200).send()
             }
@@ -109,6 +113,8 @@ router.post("/create", async (req, res) => {
             res.send(newProduct)
         }
     } catch (error) {
+    console.log(error);
+    
         res.sendStatus(500)
     }
 })
