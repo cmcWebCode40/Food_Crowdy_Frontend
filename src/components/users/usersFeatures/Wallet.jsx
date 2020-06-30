@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 const FutureBuying = () => {
+	// const res = await userApi.post('/signin/43t83948t43t34', userDetails);
 	return (
 		<div className='user-account'>
 			<Users wallet={true} />

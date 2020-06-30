@@ -3,60 +3,14 @@ import { SearchByCategory } from '../../utils/reducer/SearchByCategory';
 import AllActiveBulkshare from '../product/AllActiveBulkshare';
 import { contextApi } from '../context/Context';
 import Checkbox from '@material-ui/core/Checkbox';
+import UseFetch from '../hooks/UseFetch';
 
-const productData = [
-	{
-		id: 1,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 2,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 3,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 4,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 5,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	}
-];
 const BulkBuyProducts = () => {
-	const [state, dispatch] = useReducer(SearchByCategory, productData);
+	const [state, dispatch] = useReducer(SearchByCategory, []);
 	const { searchApiCall } = useContext(contextApi);
+	const { data, loading } = UseFetch(`/all`);
 	const [checked, setChecked] = React.useState({ meat: false, fish: false });
 	console.log(state);
-	
 
 	const handleChange = (event) => {
 		// setChecked('');
@@ -79,7 +33,11 @@ const BulkBuyProducts = () => {
 		// console.log(checked);
 	};
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		if (data) {
+			dispatch({ type: 'FISH', payload: data });
+		}
+	}, [data]);
 	return (
 		<>
 			<div className='shoping'>
@@ -89,7 +47,7 @@ const BulkBuyProducts = () => {
 						<input
 							type='text'
 							placeholder='search for food  items by category'
-							style={{width:'100%'}}
+							style={{ width: '100%' }}
 						/>
 					</form>
 					<div>

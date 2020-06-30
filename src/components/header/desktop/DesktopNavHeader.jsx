@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import SearchBar from '../SearchBar';
 import { contextApi } from '../../context/Context';
-import { getCartTotal, cartBadge } from '../../../utils/localStorageItems';
+// import { getCartTotal, cartBadge } from '../../../utils/localStorageItems';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -16,16 +17,26 @@ const useStyles = makeStyles(() => ({
 	btn: {
 		color: '#000 !important',
 		fontWeight: '600'
-	}
+	},
+
+	open: {
+		display: 'block'
+	},
+	close: {
+		display: 'none'
+	},
+	ul: { width: '85%', margin: '0 .4rem ' }
 }));
 
 const DesktopNavHeader = () => {
+	const [data, setData] = useState(false);
+	const [open, setOpen] = useState(true);
 	const { updateCart } = useContext(contextApi);
 	const classes = useStyles();
 	const cartTotal = '';
 
 	useEffect(() => {
-		console.log(cartTotal);
+		// console.log(cartTotal);
 	}, [updateCart]);
 
 	return (
@@ -38,10 +49,14 @@ const DesktopNavHeader = () => {
 					<input type='text' placeholder='search for food items' />
 					<Button type='submit' variant='contained' color='primary'>
 						<span className={classes.btn}>
-							<strong>SEARCH</strong>{' '}
+							<strong>SEARCH</strong>
 						</span>
 					</Button>
 				</form>
+				<div className={open ? classes.open : classes.close}>
+					{/* <button onClick={() => setOpen(false)}>Close</button> */}
+					{data && <SearchBar breathe={'42%'} />}
+				</div>
 			</div>
 			<div className='largenav-links'>
 				<DesktopLinks />

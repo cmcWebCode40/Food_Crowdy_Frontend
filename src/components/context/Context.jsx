@@ -128,15 +128,26 @@ const ContextProvider = ({ children }) => {
 
 	const logoutUser = async (e, history) => {
 		e.preventDefault();
+		console.log('logout');
+		const token = JSON.parse(localStorage.getItem('_token'));
+		console.log(token);
+
 		try {
-			const res = await userApi.post('/users/logout');
-			//add user ID
+			await userApi.post(`/logout`, {
+				headers: {
+					'content-Type': 'application/json',
+					'Authorization': `Bearer  ${token}`
+				}
+			});
+			localStorage.removeItem('_token');
 			history.push('/');
-		} catch (error) {}
+		} catch (error) {
+			console.log({ error });
+		}
 	};
 
-	const searchApiCall = async (category) => {
-		const res = await ProductsApi.get(`/category/${category}`);
+	const searchApiCall = async (categoryUrl) => {
+		const res = await ProductsApi.get(categoryUrl);
 		return res;
 	};
 

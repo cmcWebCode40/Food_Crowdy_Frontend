@@ -117,8 +117,13 @@
 //****About Page*****//
 
 .about {
-	margin: 0 0.4rem;
+	// margin: 0 0.4rem;
 	text-align: center;
+	&-img {
+		img {
+			width: 100%;
+		}
+	}
 	&-values {
 		margin: 1rem 0 2rem 0;
 		p {
@@ -149,6 +154,7 @@
 //****contatct Page****//
 
 .contact {
+	margin-bottom: -1rem;
 	&-img {
 		text-align: center;
 		width: 100%;
@@ -195,16 +201,32 @@
 
 	&-form {
 		text-align: center;
-		margin: 1rem auto;
+		margin: 1.3rem auto;
 		div {
 			margin: 1rem 0;
 			input {
 				width: 80%;
-				height: 2.6rem;
+				height: 2.5rem;
 				padding: 0.8rem 0.3rem;
+				border-radius: $border-radius;
+				border: 4px solid $light2;
 			}
+			select {
+				width: 80%;
+				padding: 0.8rem 0.3rem;
+				border-radius: $border-radius;
+				border: 4px solid $light2;
+				outline: none;
+				&:focus {
+					border: 2px solid $secondary;
+				}
+			}
+
 			textarea {
 				width: 80%;
+				border-radius: $border-radius;
+				border: 4px solid $light2;
+				padding: 0.8rem 0.3rem;
 			}
 		}
 	}
@@ -629,10 +651,9 @@
 				margin: 0 0 0.6rem 0.7rem;
 			}
 			p {
-				font-weight: 600;
-				border-top: 1px solid $light2;
-				padding: 0.2rem 0;
-				// margin: 1rem 0;
+				font-weight: 500;
+				// border-top: 1px solid $light2;
+				padding: 0.5rem 0;
 				word-wrap: break-word;
 				span {
 					color: $primary;
@@ -791,10 +812,10 @@
 .user {
 	margin: 1rem;
 	width: 90%;
-	h4{
-		margin: 0 1.3rem  ;
+	h4 {
+		margin: 0 1.3rem;
 		text-transform: capitalize;
-		letter-spacing: .1rem ;
+		letter-spacing: 0.1rem;
 	}
 	&-active {
 		border-left: 3px solid $primary;
@@ -816,6 +837,7 @@
 	}
 }
 .user-account {
+	// background: $light;
 	&-grid {
 		.wallets {
 			display: grid;

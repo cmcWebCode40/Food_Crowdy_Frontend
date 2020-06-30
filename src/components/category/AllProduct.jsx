@@ -1,56 +1,77 @@
 import React, { useEffect, useContext, useState, useReducer } from 'react';
 import { SearchByCategory } from '../../utils/reducer/SearchByCategory';
 import Products from '../product/AllProduct';
-// import { ProductsApi } from '../../api/Api';
+import { ProductsApi } from '../../api/Api';
 import { contextApi } from '../context/Context';
 import UseFetch from '../hooks/UseFetch';
 import Checkbox from '@material-ui/core/Checkbox';
+import { Media } from '../backdrop/AppShell';
 
 const AllProduct = () => {
-	const { data, loading } = UseFetch(`/`);
+	const { data, loading } = UseFetch(`/all`);
 	const [state, dispatch] = useReducer(SearchByCategory, []);
 	const { searchApiCall } = useContext(contextApi);
-	const [checked, setChecked] = useState({ meat: false, fish: false });
+	const [checked, setChecked] = useState(false);
+	const [checked2, setChecked2] = useState(false);
+	const [checked3, setChecked3] = useState(false);
+	const [checked4, setChecked4] = useState(false);
+	const [checked5, setChecked5] = useState(false);
+	const [checked6, setChecked6] = useState(false);
+	const [waiting, setWaiting] = useState(false);
 
-	const handleChange = (event) => {
-		// setChecked('');
-		// setChecked({ [event]: true });
-		// console.log(checked);
-		// const fish = fishResult('/category/:category');
-		// dispatch({ type: 'FISH', payload: fish });
-		// setChecked(event.target.checked);
+	const categorySeaerchFunction = (url, category) => {
+		searchApiCall(url).then((data) => {
+			dispatch({ type: category, payload: data.data });
+			setWaiting(false);
+		});
+		// .finally(setWaiting(false));
 	};
 
-	const handleChange1 = (event) => {
-		// setChecked('');
+	const querySearch = async (query) => {
+		const res = await ProductsApi.get(`/all?title=${query}`);
+		if (res.data.length === 0) {
+			console.log('nothing');
+		} else {
+			dispatch({ type: 'FISH', payload: res.data });
+		}
+	};
+	const handleChange = (url, category) => {
+		setWaiting(true);
+		switch (category) {
+			case 'FISH':
+				setChecked(!checked);
+				categorySeaerchFunction(url, category);
+				break;
+			case 'MEAT':
+				setChecked2(!checked2);
+				categorySeaerchFunction(url, category);
+				break;
+			case 'FRIUTS':
+				setChecked3(!checked3);
+				categorySeaerchFunction(url, category);
+				break;
+			case 'VEGETABLES':
+				setChecked4(!checked4);
+				categorySeaerchFunction(url, category);
+				break;
+			case 'CONDINMENTS':
+				setChecked5(!checked5);
+				categorySeaerchFunction(url, category);
+				break;
+			case 'FOODSTUFFS':
+				setChecked6(!checked6);
+				categorySeaerchFunction(url, category);
+				break;
+			default:
+				break;
+		}
 		// setChecked(!checked);
-		// console.log(checked);
-		// const condi = Ingredient();
-		// dispatch({ type: 'INGREDIENT', payload: condi });
-		// setChecked(event.target.checked);
-		// console.log(checked);
 	};
 
 	useEffect(() => {
 		if (data) {
 			dispatch({ type: 'FISH', payload: data });
 		}
-		// const getProducts = async () => {
-		// 	try {
-		// 		setLoading(true);
-		// 		const res = await ProductsApi.get('/');
-		// 		setData(res.data);
-		// 		dispatch({ type: 'FISH', payload: res.data });
-		// 		setLoading(false);
-		// 		console.log(res);
-		// 	} catch (error) {
-		// 		// setError(error);
-		// 		setLoading(false);
-		// 	}
-		// };
-		// getProducts();
-		// console.log(data);
-		// console.log(state);
 	}, [data]);
 	return (
 		<>
@@ -60,22 +81,16 @@ const AllProduct = () => {
 					<form>
 						<input
 							type='text'
-							style={{width:'100%'}}
+							style={{ width: '100%' }}
+							onChange={(e) => querySearch(e.target.value)}
 							placeholder='search for food  items by category'
 						/>
 					</form>
 					<div>
-						{/* <input
-							type='checkbox'
-							onChange={handleChange}
-							name='sdcksd'
-							id='dckjsd'
-							checked={checked}
-						/> */}
 						<Checkbox
 							color='primary'
 							checked={checked}
-							onChange={() => handleChange('meat')}
+							onChange={() => handleChange(`/category/fish`, 'FISH')}
 							inputProps={{ 'aria-label': 'primary checkbox' }}
 						/>
 						Fish & seafoood
@@ -83,17 +98,19 @@ const AllProduct = () => {
 					<div>
 						<Checkbox
 							color='primary'
-							checked={checked}
-							onChange={() => handleChange('fish')}
+							checked={checked2}
+							onChange={() => handleChange(`/category/fruits`, 'FRUITS')}
 							inputProps={{ 'aria-label': 'primary checkbox' }}
 						/>
 						Fruits & Nuts
 					</div>
-					{/* <div>
+					<div>
 						<Checkbox
 							color='primary'
-							checked={checked}
-							onChange={handleChange}
+							checked={checked3}
+							onChange={() =>
+								handleChange(`/category/vegetables`, 'VEGETABLES')
+							}
 							inputProps={{ 'aria-label': 'primary checkbox' }}
 						/>
 						Vegetables
@@ -101,8 +118,10 @@ const AllProduct = () => {
 					<div>
 						<Checkbox
 							color='primary'
-							checked={checked}
-							onChange={handleChange}
+							checked={checked4}
+							onChange={() =>
+								handleChange(`/category/condinments`, 'CONDIMENTS')
+							}
 							inputProps={{ 'aria-label': 'primary checkbox' }}
 						/>
 						Condiments
@@ -110,14 +129,25 @@ const AllProduct = () => {
 					<div>
 						<Checkbox
 							color='primary'
-							checked={checked}
-							onChange={handleChange}
+							checked={checked5}
+							onChange={() => handleChange(`/category/meat`, 'MEAT')}
 							inputProps={{ 'aria-label': 'primary checkbox' }}
 						/>
 						Cow,Goat,Chicken
-					</div> */}
+					</div>
+					<div>
+						<Checkbox
+							color='primary'
+							checked={checked6}
+							onChange={() =>
+								handleChange(`/category/foodstuffs`, 'FOODSTUFFS')
+							}
+							inputProps={{ 'aria-label': 'primary checkbox' }}
+						/>
+						Foodstuffs
+					</div>
 				</div>
-				<Products state={state} />
+				{loading ? <Media /> : <Products waiting={waiting} state={state} />}
 			</div>
 		</>
 	);

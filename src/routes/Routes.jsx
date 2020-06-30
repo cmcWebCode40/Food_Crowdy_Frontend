@@ -17,14 +17,20 @@ const AboutUs = lazy(() => import('../pages/AboutUs'));
 const Help = lazy(() => import('../pages/Help'));
 const SignIn = lazy(() => import('../pages/SignIn'));
 const Cart = lazy(() => import('../components/cart/Cart'));
-const CartVerifyContent = lazy(() => import('../components/checkout/addressForm'));
+const CartVerifyContent = lazy(() =>
+	import('../components/checkout/addressForm')
+);
 const ProductDetails = lazy(() =>
 	import('../components/product/ProductDetails')
+);
+const JoinBulkShareDetails = lazy(() =>
+	import('../components/product/JoinBulkShare')
 );
 const AllActiveBulkshare = lazy(() =>
 	import('../components/category/BulkBuySearch')
 );
 const ShopNow = lazy(() => import('../components/category/AllProduct'));
+const ProductCategory = lazy(() => import('../components/category/CategoryPage'));
 
 /**
  * ? User Private Routes
@@ -64,14 +70,28 @@ const Layouts = () => {
 						path='/product-details/:name/:id'
 						component={ProductDetails}
 					/>
+					<Route
+						exact
+						path='/join-bulkshare/'
+						component={JoinBulkShareDetails}
+					/>
 					<Route exact path='/cart' component={Cart} />
-					<Route exact path='/checkout/verify_contents' component={CartVerifyContent} />
+					<Route
+						exact
+						path='/checkout/verify_contents'
+						component={CartVerifyContent}
+					/>
 					<Route
 						exact
 						path='/active/bulkshare'
 						component={AllActiveBulkshare}
 					/>
 					<Route exact path='/shop-now' component={ShopNow} />
+					<Route
+						exact
+						path='/products/category/:name'
+						component={ProductCategory}
+					/>
 
 					<PrivateRoute
 						exact

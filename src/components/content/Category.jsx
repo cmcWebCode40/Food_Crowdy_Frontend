@@ -14,16 +14,16 @@ const Category = () => {
 				<span></span>
 			</div>
 			<div className='category'>
-				<Link to='/category/fruits'>
+				<Link to='/products/category/fruits'>
 					<img src={fruits} alt='fruits' />
 				</Link>
-				<Link to='/category/ingredients'>
+				<Link to='/products/category/ingredients'>
 					<img src={condinments} alt='ingrdients' />
 				</Link>
-				<Link to='/category/meats'>
+				<Link to='/products/category/meats'>
 					<img src={packagedFood} alt='packaged foods' />
 				</Link>
-				<Link to='/category/foodItmes'>
+				<Link to='/products/category/meat'>
 					<img src={foodItems} alt=' food Items' />
 				</Link>
 			</div>

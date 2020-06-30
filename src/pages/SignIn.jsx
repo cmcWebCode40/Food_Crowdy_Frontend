@@ -70,14 +70,9 @@ const SignIn = (props) => {
 		setLoading(!loading);
 		const productId = getProductId();
 		const cartItems = getCartItems();
-		// const oldUrl = getOldUrl();
-		const bulkBuyCartItems = getBulkBuyCartItems();
 		try {
 			if (productId !== null) userDetails.productId = JSON.parse(productId);
 			if (cartItems !== null) userDetails.cart = JSON.parse(cartItems);
-			if (bulkBuyCartItems !== null)
-				userDetails.bulkCart = JSON.parse(bulkBuyCartItems);
-			// if (oldUrl !== null) userDetails.oldUrl = JSON.parse(oldUrl);
 			const res = await userApi.post('/signin', userDetails);
 			console.log(userDetails);
 			saveAuthToken(res.data.token);
@@ -103,17 +98,6 @@ const SignIn = (props) => {
 			setLoading(false);
 		}
 	};
-	const role = 'sales';
-
-	const access = ['admin', 'sales', 'superAdmin'];
-	localStorage.setItem(
-		'roles',
-		JSON.stringify(['admin', 'sales', 'superAdmin'])
-	);
-
-	const newArr = access.filter((admin) => (admin === role ? true : ''));
-
-	console.log(newArr[0]);
 
 	// console.log();
 

@@ -68,59 +68,11 @@ const formatter = new Intl.NumberFormat('en-NG', {
 	style: 'currency',
 	currency: 'NGN'
 });
-const productData = [
-	{
-		id: 1,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 2,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 3,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 4,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	},
-	{
-		id: 5,
-		title: 'Totmatoes-Grade A (100kg)...',
-		image: 'https://source.unsplash.com/random',
-		price: '10,500',
-		description: `this is an affordable products bulk buy now we have just a limited slots`,
-		discount: '-35%',
-		bulkBuy: false
-	}
-];
 const Products = (props) => {
 	const classes = useStyles();
 	const { updateCart, addItemToCart } = useContext(contextApi);
 	const [item, setItem] = useState(false);
 	const { data, loading } = UseFetch('/all');
-	console.log(data);
 
 	React.useEffect(() => {}, [updateCart]);
 	// if (updateCart) {
@@ -156,7 +108,7 @@ const Products = (props) => {
 							arrows={false}
 							customButtonGroup={<CustomArrows />}
 							responsive={responsive}>
-							{productData.slice(0, 6).map((item) => (
+							{data.slice(0, 6).map((item) => (
 								<div className='card' key={item._id}>
 									<Link to={`/product-details/${item.title}/${item._id}`}>
 										<span className='discount'>-25%</span>

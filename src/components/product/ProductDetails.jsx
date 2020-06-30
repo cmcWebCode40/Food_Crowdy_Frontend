@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-// import { ProductsApi } from '../../api/Api';
+import React, { useContext, useState, useEffect } from 'react';
+import { contextApi } from '../context/Context';
+import { ProductsApi } from '../../api/Api';
 import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -21,8 +22,26 @@ const formatter = new Intl.NumberFormat('en-NG', {
 
 const ProductDetails = ({ match }) => {
 	const { data, loading } = UseFetch(`/${match.params.id}`);
-	const [open, setOpen] = React.useState(false);
-	const [diaglog, setDialog] = React.useState(false);
+	const [open, setOpen] = useState(false);
+	const [noOfPrt, setNoOfPrt] = useState(0);
+	const { addItemToCart } = useContext(contextApi);
+	const [alert, setAlert] = useState(false);
+	const [diaglog, setDialog] = useState(false);
+
+	const handleReview = async (event, review, setReview) => {
+		event.preventDefault();
+		try {
+			const res = await ProductsApi.post(`/details/review/${match.params.id}`, {
+				body: {
+					body: review
+				}
+			});
+			console.log(review);
+			console.log(res);
+			setAlert(true);
+			setReview();
+		} catch (error) {}
+	};
 
 	const handleClickOpen = () => {
 		setDialog(false);
@@ -37,6 +56,13 @@ const ProductDetails = ({ match }) => {
 		setOpen(false);
 		setDialog(true);
 	};
+
+	const AddToCart = (noOfPrt) => {
+		addItemToCart(data._id, noOfPrt);
+		handleSubmit();
+		console.log(noOfPrt);
+	};
+	useEffect(() => {}, [alert]);
 	useEffect(() => {}, [diaglog]);
 	return (
 		<div className='product-details'>
@@ -78,7 +104,6 @@ const ProductDetails = ({ match }) => {
 										<DialogTitle id='form-dialog-title'>Subscribe</DialogTitle>
 										<DialogContent>
 											<DialogContentText>
-												{' '}
 												You are about to partake in this bulk sharing this
 												products with other buyers <br />
 												<strong>
@@ -90,8 +115,9 @@ const ProductDetails = ({ match }) => {
 												margin='dense'
 												id='name'
 												label='No of portion '
-												type='numbe'
+												type='number'
 												fullWidth
+												onClick={(e) => setNoOfPrt(e.target.value)}
 											/>
 										</DialogContent>
 										<DialogActions>
@@ -102,7 +128,7 @@ const ProductDetails = ({ match }) => {
 												Cancel
 											</Button>
 											<Button
-												onClick={handleSubmit}
+												onClick={() => AddToCart(noOfPrt)}
 												variant='contained'
 												color='primary'>
 												ADD TO Cart
@@ -115,7 +141,11 @@ const ProductDetails = ({ match }) => {
 					</div>
 				</div>
 			)}
-			<Reviews />
+			<Reviews
+				productId={match.params.id}
+				alert={alert}
+				handleReview={handleReview}
+			/>
 		</div>
 	);
 };

@@ -5,8 +5,6 @@ import axios from 'axios';
 // 	responseType: 'json'
 // });
 
-
-
 export const BulkShareApi = axios.create({
 	baseURL: 'http://localhost:8001/bulkshare',
 	responseType: 'json'
@@ -18,7 +16,11 @@ export const ProductsApi = axios.create({
 });
 
 export const userApi = axios.create({
-	baseURL: 'http://localhost:8080/users',
+	baseURL: 'http://localhost:6001/users',
+	responseType: 'json'
+});
+export const AdminApi = axios.create({
+	baseURL: 'http://localhost:9000/admin',
 	responseType: 'json'
 });
 

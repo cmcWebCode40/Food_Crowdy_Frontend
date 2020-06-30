@@ -6,6 +6,7 @@ import Logo from '../header/Logo';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SearchIcon from '@material-ui/icons/Search';
+import SearchBarResults from './SearchBar';
 
 const NavBar = () => {
 	const userDetails = getUserName();
@@ -42,6 +43,9 @@ const NavBar = () => {
 						<SearchIcon fontSize='inherit' />
 					</button>
 				</form>
+				<div style={{ margin: '0  1.5rem ', textAlign: 'center' }}>
+					<SearchBarResults breathe={'85%'} />
+				</div>
 			</div>
 		</div>
 	);

@@ -6,7 +6,7 @@ const Users = ({ profile, orders, bulkBuy, wallet }) => {
 	const name = getUserName();
 	return (
 		<div className='user'>
-			<h4> Hi,  {name && name}</h4>
+			<h4> Hi, {name && name}</h4>
 			<ul>
 				<li className={wallet ? 'user-active' : ''}>
 					<Link to='/customer/account/wallet' title='wallet'>
@@ -18,16 +18,16 @@ const Users = ({ profile, orders, bulkBuy, wallet }) => {
 						Account Overview
 					</Link>
 				</li>
-				<li className={orders ? 'user-active' : ''}>
+				{/* <li className={orders ? 'user-active' : ''}>
 					<Link to='/customer/account/myorders' title='my orders'>
 						My Orders
 					</Link>
-				</li>
+				</li> */}
 				<li className={bulkBuy ? 'user-active' : ''}>
 					<Link
 						to='/customer/account/mybulk-share-status'
 						title='my bulk share status'>
-						Bulk Share
+						My Bulk Shares
 					</Link>
 				</li>
 			</ul>

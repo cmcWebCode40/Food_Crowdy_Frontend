@@ -2,12 +2,13 @@ import React from 'react';
 import technicalSupport from '../images/technical-support.svg';
 import _100Percent from '../images/100percent.svg';
 import buy from '../images/buy1.svg';
+import AboutPage from '../images/about-page.svg';
 
 const AboutUs = () => {
 	return (
 		<div className='about'>
 			<div className='about-img'>
-				<img src='csdkjcksd' alt='about food crowdy' />
+				<img src={AboutPage} alt='about food crowdy' />
 			</div>
 			<div className='about-desc'>
 				<h3>ABOUT FOODCROWDY </h3>

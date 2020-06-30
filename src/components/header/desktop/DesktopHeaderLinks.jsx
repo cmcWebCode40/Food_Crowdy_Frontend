@@ -117,18 +117,18 @@ const DesktopHeaderLinks = () => {
 										onKeyDown={handleListKeyDown}>
 										{/* <div>LOGIN</div> */}
 										<MenuItem onClick={handleClose}>
-											<Link title='login' to='/customer/account/login'>
-												{userName ? (
-													<Button
-														className={classes.btn}
-														type='submit'
-														variant='contained'
-														fullWidth
-														onClick={(e) => logoutUser(e, history)}
-														color='primary'>
-														<span>LOGOUT</span>
-													</Button>
-												) : (
+											{userName ? (
+												<Button
+													className={classes.btn}
+													type='submit'
+													variant='contained'
+													fullWidth
+													onClick={(e) => logoutUser(e, history)}
+													color='primary'>
+													<span>LOGOUT</span>
+												</Button>
+											) : (
+												<Link title='login' to='/customer/account/login'>
 													<Button
 														className={classes.btn}
 														type='submit'
@@ -137,8 +137,8 @@ const DesktopHeaderLinks = () => {
 														color='primary'>
 														<span>LOGIN</span>
 													</Button>
-												)}
-											</Link>
+												</Link>
+											)}
 										</MenuItem>
 										<MenuItem onClick={handleClose}>OR</MenuItem>
 										<MenuItem onClick={handleClose}>
