@@ -40,8 +40,8 @@ router.get("/:id", async (req, res) => {
 // GET route to find a single product checking if user has joined a bulkshare for the product
 router.get("/details/:id", async (req, res) => {
     try {
-        const hasBought = await axios.get(`http://localhost:8000/bulkshares/myorders?userId=${req.query.userId}&productId=${req.params.id}`);
-        const activeShareData = await axios.get(`http://localhost:8000/bulkshare/sharestatus/${req.params.id }`)
+        const hasBought = await axios.get(`http://localhost:3003/bulkshares/myorders?userId=${req.query.userId}&productId=${req.params.id}`);
+        const activeShareData = await axios.get(`http://localhost:3003/bulkshare/sharestatus/${req.params.id }`)
         const item = await Product.findOne({ _id: req.params.id })
         console.log(hasBought.data)
         if (hasBought.data) {
@@ -73,7 +73,7 @@ router.get("/add-to-cart/:id", async (req, res) => {
             const item = await Product.findOne({ _id: req.params.id })
             newItem = {...item}
             newItem._doc.numberOfParts = parseInt(req.query.numberOfParts)
-            const response = await axios.post(`http://localhost:6001/users/add-to-cart?userId=${req.query.userId}&productId=${req.params.id}`, newItem._doc)
+            const response = await axios.post(`http://localhost:3006/users/add-to-cart?userId=${req.query.userId}&productId=${req.params.id}`, newItem._doc)
             if (response.data.cart[0] != undefined) {
                 res.status(200).send()
             }
@@ -92,7 +92,7 @@ router.get("/add-to-cart/:id", async (req, res) => {
 router.get("/removecartitem/:id", async (req, res) => {
     if (req.query.userId != undefined) {
         try {
-            const response = await axios.get(`http://localhost:6001/users/removecartitem?userId=${req.query.userId}&productId=${req.params.id}`)
+            const response = await axios.get(`http://localhost:3006/users/removecartitem?userId=${req.query.userId}&productId=${req.params.id}`)
             if (response.data != undefined) {
                 res.status(200).send()
             }

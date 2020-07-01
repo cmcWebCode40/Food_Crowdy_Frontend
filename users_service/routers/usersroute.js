@@ -173,11 +173,13 @@ router.get("/checkout/:id", async (req, res, next) => {
     try {
         // Client to send sumTotal and address in req.query for payment integration function and for inclusion 
         // of new address to bulkshare database. API sends it back to be sent again in post
+
+        // JUST TESTING CODE BELOW. IGNORE
         const user = await User.findById(req.params.id)
         let arrayOfCartItemIds = Object.keys(user.cart[0].items)
         for (let i = 0; i < arrayOfCartItemIds.length; i++) {
             let id = arrayOfCartItemIds[i];            
-            const product = await axios.get(`http://localhost:5000/products/${id}`);
+            const product = await axios.get(`http://localhost:3005/products/${id}`);
             console.log(product.data, i);
         }
         
@@ -196,9 +198,9 @@ router.post("/checkout/:id", async (req, res, next) => {
         let arrayOfCartItemIds = Object.keys(user.cart[0].items)
         for (let i = 0; i < arrayOfCartItemIds.length; i++) {
             let id = arrayOfCartItemIds[i];            
-            const product = await axios.get(`http://localhost:5000/products/${id}`);
+            const product = await axios.get(`http://localhost:3005/products/${id}`);
 
-            const activeShareData = await axios.get(`http://localhost:8000/bulkshare/sharestatus/${id}`);
+            const activeShareData = await axios.get(`http://localhost:3003/bulkshare/sharestatus/${id}`);
             if (activeShareData.data) {
                 let bulkShare = activeShareData.data  
                 if (bulkShare.currentParticipants == product.data.maxParticipants) {
@@ -221,10 +223,10 @@ router.post("/checkout/:id", async (req, res, next) => {
                         uniqueId: Math.random().toString().slice(2)
                         // paymentId: stripe.paymentId to be modified depending on third party payment integration
                     })
-                    const newBulkShareData = await axios.post(`http://localhost:8000/bulkshare/create`, nBulkShare)
+                    const newBulkShareData = await axios.post(`http://localhost:3003/bulkshare/create`, nBulkShare)
                     let newBulkShare = newBulkShareData.data
                     newBulkShare.joinUrl = `www.foodcrowdy.com/bulkshare/join/${newBulkShare._id}`
-                    await axios.post(`http://localhost:8000/bulkshare/update/${newBulkShare._id}`, newBulkShare)
+                    await axios.post(`http://localhost:3003/bulkshare/update/${newBulkShare._id}`, newBulkShare)
                     // await User.findByIdAndUpdate(req.params.id, { "cart": [{}] })
                 } else {
                     bulkShare.currentParticipants = bulkShare.currentParticipants + user.cart[0].items[id].quantity;
@@ -239,7 +241,7 @@ router.post("/checkout/:id", async (req, res, next) => {
                     bulkShare.participants.push(user._id);
                     // console.log(i);
                     
-                    await axios.post(`http://localhost:8000/bulkshare/update/${bulkShare._id}`, bulkShare);
+                    await axios.post(`http://localhost:3003/bulkshare/update/${bulkShare._id}`, bulkShare);
                     // await User.findByIdAndUpdate(req.params.id, { "cart": [{}] });
                     await user.save()
 
@@ -263,10 +265,10 @@ router.post("/checkout/:id", async (req, res, next) => {
                     phoneNumber: user.phoneNumber,
                     uniqueId: Math.random().toString().slice(2)
                 })
-                const newBulkShareData = await axios.post(`http://localhost:8000/bulkshare/create`, bulkShare)
+                const newBulkShareData = await axios.post(`http://localhost:3003/bulkshare/create`, bulkShare)
                 let newBulkShare = newBulkShareData.data
                 newBulkShare.joinUrl = `www.foodcrowdy.com/bulkshare/join/${newBulkShare._id}`
-                await axios.post(`http://localhost:8000/bulkshare/update/${newBulkShare._id}`, newBulkShare);
+                await axios.post(`http://localhost:3003/bulkshare/update/${newBulkShare._id}`, newBulkShare);
                 // await User.findByIdAndUpdate(req.params.id, { "cart": [{}] })
                 await user.save()
             }
@@ -281,7 +283,7 @@ router.post("/checkout/:id", async (req, res, next) => {
 // GET route for displaying page for adding to cart for join bulk share action
 router.get("/joinbulkshare/:id", async (req, res) => {
     try {
-    const bulkShareData = await axios.get(`http://localhost:8000/bulkshare/join/${req.params.bulkProductId}`)
+    const bulkShareData = await axios.get(`http://localhost:3003/bulkshare/join/${req.params.bulkProductId}`)
     const bulkShare = bulkShareData.data
     res.send(bulkShare)
     } catch (error) {
@@ -293,7 +295,7 @@ router.get("/joinbulkshare/:id", async (req, res) => {
 // GET route for finding users pending bulk shares
 router.get("/mypendingbulkshares/:id", async (req, res) => {
     try {
-        const userPendingBulkshareData = await axios.get(`http://localhost:8000/bulkshare/mypendingorders/${req.params.id}`)
+        const userPendingBulkshareData = await axios.get(`http://localhost:3003/bulkshare/mypendingorders/${req.params.id}`)
         if(userPendingBulkshareData.data){
             res.send(userPendingBulkshareData.data)
         }
@@ -306,7 +308,7 @@ router.get("/mypendingbulkshares/:id", async (req, res) => {
 // GET route for finding users processing bulk shares
 router.get("/myprocessingbulkshares/:id", async (req, res) => {
     try {
-        const userProcessingBulkshareData = await axios.get(`http://localhost:8000/bulkshare/myprocessingorders/${req.params.id}`)
+        const userProcessingBulkshareData = await axios.get(`http://localhost:3003/bulkshare/myprocessingorders/${req.params.id}`)
         if(userProcessingBulkshareData.data){
             res.send(userProcessingBulkshareData.data)
         }

@@ -14,7 +14,7 @@ mongoose.connection.once("open", ()=>{
 }).on("error", ()=>{
   console.log("Error connecting to AGENT database")
 })
-const PORT = process.env.PORT || 2000
+const PORT = process.env.PORT || 3002
 app.listen(PORT, ()=>{
   console.log(`Listening on AGENT port ${PORT}`)  
 })

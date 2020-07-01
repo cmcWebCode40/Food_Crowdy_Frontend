@@ -16,7 +16,7 @@ mongoose.connection.once("open", ()=>{
 }).on("error", ()=>{
   console.log("Error connecting to ADMIN database")
 })
-const PORT = process.env.PORT || 9000
+const PORT = process.env.PORT || 3001
 app.listen(PORT, ()=>{
   console.log(`Listening on ADMIN port ${PORT}`)  
 })

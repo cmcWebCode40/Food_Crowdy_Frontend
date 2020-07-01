@@ -12,7 +12,7 @@ app.use("/users", usersRouter)
 // }).on("error", ()=>{
 //   console.log("Error connecting to DELIVERIES database")
 // })
-const PORT = process.env.PORT || 7000
+const PORT = process.env.PORT || 3004
 app.listen(PORT, ()=>{
   console.log(`Listening on DELIVERIES port ${PORT}`)  
 })
