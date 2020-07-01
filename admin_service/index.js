@@ -17,7 +17,11 @@ mongoose.connection.once("open", ()=>{
   console.log("Error connecting to ADMIN database")
 })
 const PORT = process.env.PORT || 3001
-app.listen(PORT, ()=>{
-  console.log(`Listening on ADMIN port ${PORT}`)  
-})
+// app.listen(PORT, ()=>{
+//   console.log(`Listening on ADMIN port ${PORT}`)  
+// })
+let server = require( 'https' ).createServer( app );
 
+server.listen( PORT , function() {
+  console.log(`Listening on ADMIN port ${PORT}`)
+} );
