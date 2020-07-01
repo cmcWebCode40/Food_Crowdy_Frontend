@@ -11,7 +11,7 @@ router.post("/create/id", async (req, res) => {
         const user = await User.findById(req.params.id);
         let product = req.body;
         product.agentId = user._id
-            newProductData = await axios.post(`http://localhost:5000/products/create`, product)
+            newProductData = await axios.post(`http://localhost:3005/products/create`, product)
         if (newProductData.data) {
             res.status(200).send({ message: "product created succesfully" })
         }
@@ -23,7 +23,7 @@ router.post("/create/id", async (req, res) => {
 // GET route to view all agents personal pending uploaded products
 router.get("/pending/:id", async (req, res) => { 
     try {
-      const pendingProductsData = await axios.get(`http://localhost:5000/products/pending/${req.params.id}`)
+      const pendingProductsData = await axios.get(`http://localhost:3005/products/pending/${req.params.id}`)
       if(pendingProductsData.data){
           res.send(pendingProductsData.data)
       }
@@ -35,7 +35,7 @@ router.get("/pending/:id", async (req, res) => {
 // GET route to view all approved uploaded products
 router.get("/approved/:id", async (req, res) => { 
     try {
-      const approvedProductsData = await axios.get(`http://localhost:5000/products/approved/${req.params.id}`)
+      const approvedProductsData = await axios.get(`http://localhost:3005/products/approved/${req.params.id}`)
       if(approvedProductsData.data){
           res.send(approvedProductsData.data)
       }
@@ -48,7 +48,7 @@ router.get("/approved/:id", async (req, res) => {
 
 router.get("/deleterequest/:id", async (req, res) => { 
     try {
-        let product = await axios.get(`http://localhost:5000/products/${req.params.id}`)
+        let product = await axios.get(`http://localhost:3005/products/${req.params.id}`)
       if(product.data){
           res.send(product.data)
       }
@@ -60,7 +60,7 @@ router.get("/deleterequest/:id", async (req, res) => {
 // POST route to make delete request for uploaded product
 router.post("/deleterequest/:id", async (req, res) => { 
     try {
-      let product = await axios.get(`http://localhost:5000/products/${req.params.id}`)
+      let product = await axios.get(`http://localhost:3005/products/${req.params.id}`)
       let deleteRequest = Deleterequest.create({
           agentId = product.agentId,
           product = product.data,
@@ -80,7 +80,7 @@ router.post("/deleterequest/:id", async (req, res) => {
 
 router.get("/updaterequest/:id", async (req, res) => { 
     try {
-        let product = await axios.get(`http://localhost:5000/products/${req.params.id}`)
+        let product = await axios.get(`http://localhost:3005/products/${req.params.id}`)
       if(product.data){
           res.send(product.data)
       }
@@ -93,7 +93,7 @@ router.get("/updaterequest/:id", async (req, res) => {
 
 router.post("/updaterequest/:id", async (req, res) => { 
     try {
-      let product = await axios.get(`http://localhost:5000/products/${req.params.id}`)
+      let product = await axios.get(`http://localhost:3005/products/${req.params.id}`)
       let deleteRequest = Updaterequest.create({
           agentId = product.agentId,
           product = product.data,

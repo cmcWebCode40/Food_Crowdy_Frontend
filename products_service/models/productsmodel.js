@@ -8,6 +8,7 @@ const productsSchema = new Schema({
    category: {type: String, reuired: true},
    description: {type: String, required: true},
    price: {type: Number, required: true},
+   stateOfUpload: {type: String, required: true},
    bulkPrice: { type: Number, required: true },
    maxDays: { type: Number, required: true },
    maxParticipants: { type: Number, required: true },

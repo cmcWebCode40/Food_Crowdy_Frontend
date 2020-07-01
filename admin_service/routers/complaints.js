@@ -6,7 +6,7 @@ const axios = require("axios")
 // POST route for creation of new user complaints
 router.post("/create/:id", async (req, res) => {
     try {
-        const user = await axios.get(`http://localhost:6001/users/search/${req.params.id}`)
+        const user = await axios.get(`http://localhost:3006/users/search/${req.params.id}`)
         const complaint = await new Complaint({
             userId: user._id,
             email: req.body.email,
@@ -26,7 +26,7 @@ router.get("/pending", async (req, res) => {
     try {
         let complaintArray = []
         let finalArray = []
-        const complaints = Complaints.find({ status: "pending" })
+        const complaints = await Complaint.find({ status: "pending" })
         complaints.forEach(maincomplaint => {
             let filteredComplaints = complaints.filter(complaint => complaint.orderId == maincomplaint.orderId)
             maincomplaint.numberOfPosts = filteredComplaints.length;
@@ -49,9 +49,9 @@ router.get("/pending", async (req, res) => {
     }
 })
 // GET route to find individual complaint and all complaints with same objectId 
-router.get("/pending/details/orderId", async (req, res) => {
+router.get("/pending/details/:orderId", async (req, res) => {
     try {
-        const complaints = await Complaints.
+        const complaints = await Complaint.
             find({ orderId: req.params.orderId }).
             sort({ date: -1 });
         res.send(complaints)

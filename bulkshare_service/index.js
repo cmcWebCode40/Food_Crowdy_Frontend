@@ -12,7 +12,7 @@ mongoose.connection.once("open", ()=>{
 }).on("error", ()=>{
   console.log("Error connecting to BULKSHARE database")
 });
-const PORT = process.env.PORT || 8000
+const PORT = process.env.PORT || 3003
 app.listen(PORT, ()=>{
   console.log(`Listening on BULKSHARE port ${PORT}`)  
 })
