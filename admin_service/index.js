@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use("/admin/user", usersRouter)
 app.use("/admin/complaints", complaintsRouter)
 app.use("/admin/products", productsRouter)
-mongoose.connect("mongodb://localhost/admindatabase", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect("mongodb+srv://accelerar:accelerar1@cluster0.elggi.mongodb.net/admindatabase?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 mongoose.connection.once("open", ()=>{
   console.log("ADMIN database is up")
 }).on("error", ()=>{
