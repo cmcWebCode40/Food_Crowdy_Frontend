@@ -188,7 +188,9 @@ router.get("/checkout/:id", async (req, res, next) => {
         console.error(error)
     }
 })
-
+router.get("/happy", (req, res)=>{
+    res.send("working")
+})
 // POST route to make payment. on success, revert cart to empty object and make axios call to save order
 router.post("/checkout/:id", async (req, res, next) => {
     try {

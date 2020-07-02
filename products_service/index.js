@@ -17,9 +17,16 @@ const PORT = process.env.PORT || 3005
 // app.listen(PORT, ()=>{
 //   console.log(`Listening on port ${PORT}`)  
 // })
-let server = require( 'https' ).createServer( app );
+// let server = require( 'https' ).createServer( app );
 
-server.listen( PORT , function() {
-  console.log(`Listening on PRODUCT port ${PORT}`)
-} );
+// server.listen( PORT , function() {
+//   console.log(`Listening on PRODUCT port ${PORT}`)
+// } );
+const fs = require("fs");
+let https = require("https")
+https.createServer({
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem'),
+  passphrase: 'YOUR PASSPHRASE HERE'
+}, app).listen(PORT)
 
