@@ -4,7 +4,6 @@ import NavBar from './NavBar';
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 import DesktopNav from './desktop/DesktopTab';
-import SideNav from '../sidenav/SideNav';
 import DesktopNavHeader from './desktop/DesktopNavHeader';
 
 const Header = () => {
@@ -23,7 +22,7 @@ const Header = () => {
 				</span>
 			</div>
 			<DesktopNavHeader />
-			<SideNav />
+		
 			<NavBar />
 			<DesktopNav />
 		</div>

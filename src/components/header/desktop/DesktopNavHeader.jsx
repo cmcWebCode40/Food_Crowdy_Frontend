@@ -12,7 +12,8 @@ import DesktopLinks from './DesktopHeaderLinks';
 
 const useStyles = makeStyles(() => ({
 	icon: {
-		padding: '0.4rem 0 0 0'
+		padding: '0.1rem 0 0 0',
+		margin: '.5rem -.3rem -.2rem  0'
 	},
 	btn: {
 		color: '#000 !important',
@@ -29,8 +30,8 @@ const useStyles = makeStyles(() => ({
 }));
 
 const DesktopNavHeader = () => {
-	const [data, setData] = useState(false);
-	const [open, setOpen] = useState(true);
+	const [data] = useState(false);
+	const [open] = useState(true);
 	const { updateCart } = useContext(contextApi);
 	const classes = useStyles();
 	const cartTotal = '';

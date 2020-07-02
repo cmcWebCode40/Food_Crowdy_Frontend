@@ -47,11 +47,11 @@ const FOOTER_NAV = [
 		name: 'Bulk Buy',
 		path: '/bulkbuy'
 	},
-	{
-		id: 5,
-		name: 'Future Buying',
-		path: '/future-buying'
-	},
+	// {
+	// 	id: 5,
+	// 	name: 'Future Buying',
+	// 	path: '/future-buying'
+	// },
 	{
 		id: 7,
 		name: 'Contact',
@@ -90,7 +90,7 @@ const Footer = () => {
 						))}
 					</ul>
 				</div>
-				<div className='list-item'>
+				<div className='list-item item-block'>
 					<h5>Get Our Updates</h5>
 					<form className='footer-form' noValidate autoComplete='off'>
 						<input type='text' placeholder='signup for our news update' />
@@ -112,7 +112,7 @@ const Footer = () => {
 						<InstagramIcon />
 					</Link>
 				</div>
-				<div className='list-items'>
+				<div className='list-items item-block1'>
 					<ContactInfo />
 				</div>
 			</div>

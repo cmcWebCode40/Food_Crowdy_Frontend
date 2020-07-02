@@ -86,7 +86,8 @@
 		&-form {
 			div {
 				margin: 1rem 0;
-				input,select,
+				input,
+				select,
 				textarea {
 					width: 50% !important;
 				}
@@ -98,11 +99,23 @@
 
 	.footer {
 		&-grid {
+			// display: flex;
 			display: grid !important;
 			grid-template-columns: repeat(3, 1fr) !important;
+			// .item-block1 {
+			// 	grid-column: 1/2 !important;
+			// }
+			// .list-item {
+			// 	// margin: 0.5rem 0.3rem;
+
+			// 	&.item-block {
+			// 		// grid-column: 0/0 !important;
+			// 	}
+			// }
 		}
+
 		&-form {
-			grid-column: 1/2;
+			grid-column: 1/2 !important;
 		}
 	}
 
@@ -243,11 +256,21 @@
 }
 
 @media (max-width: 768px) {
-	h3 {
-		font-size: 1rem;
-	}
+	// h3 {
+	// 	font-size: $sm-font-heading;
+	// }
 
-	h4 {
-		font-size: 1rem !important ;
+	// h4 {
+
+	// 	font-size: $sm-font-heading;
+	// }
+	// p {
+	// 	font-size:$sm-font
+	// }
+
+	.footer {
+		// a {
+		// 	font-size: $sm-font;
+		// }
 	}
 }

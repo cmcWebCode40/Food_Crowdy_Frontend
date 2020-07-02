@@ -52,7 +52,7 @@ const SIDE_NAV = [
 	},
 	{
 		id: 4,
-		name: 'Bulk Buy',
+		name: 'Bulk Shares',
 		path: '/bulk-buy'
 	},
 	// {

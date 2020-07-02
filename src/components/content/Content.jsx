@@ -21,7 +21,7 @@ function Content() {
 		<div className='content'>
 			<CarouselProvider
 				naturalSlideWidth={100}
-				naturalSlideHeight={80}
+				naturalSlideHeight={100}
 				totalSlides={3}
 				isIntrinsicHeight={true}
 				infinite={true}
@@ -31,6 +31,7 @@ function Content() {
 						{' '}
 						<img
 							// height='450'
+							// style={{ height: '30rem' }}
 							src={Carousel1}
 							alt={'buy, share and save'}
 							className='slide'
@@ -40,6 +41,7 @@ function Content() {
 						{' '}
 						<img
 							// height='450'
+							// style={{ height: '30rem' }}
 							src={Carousel2}
 							alt={'Welcome to food crowdy'}
 							className='slide'
@@ -49,6 +51,7 @@ function Content() {
 						{' '}
 						<img
 							// height='450'
+							// style={{ height: '30rem' }}
 							src={Carousel1}
 							alt={'buy, share and save'}
 							className='slide'
@@ -56,7 +59,7 @@ function Content() {
 					</Slide>
 				</Slider>
 				<ButtonBack className='btn-move btn-slide1'>
-				<ArrowBackIosIcon />
+					<ArrowBackIosIcon />
 				</ButtonBack>
 				<ButtonNext className=' btn-move btn-slide2'>
 					<ArrowForwardIosIcon />
