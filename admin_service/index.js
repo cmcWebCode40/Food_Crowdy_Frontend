@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser")
 const app = express()
+const fs = require('fs');
+const https = require("https")
 const usersRouter = require("./routers/adminauth")
 const complaintsRouter = require("./routers/complaints")
 const productsRouter = require("./routers/productadmin")
@@ -20,8 +22,12 @@ const PORT = process.env.PORT || 3001
 // app.listen(PORT, ()=>{
 //   console.log(`Listening on ADMIN port ${PORT}`)  
 // })
-let server = require( 'https' ).createServer( app );
-
-server.listen( PORT , function() {
-  console.log(`Listening on ADMIN port ${PORT}`)
-} );
+// let server = require( 'https' ).createServer( app );
+https.createServer({
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem'),
+  passphrase: 'YOUR PASSPHRASE HERE'
+}, app).listen(PORT)
+// server.listen( PORT , function() {
+//   console.log(`Listening on ADMIN port ${PORT}`)
+// } );
