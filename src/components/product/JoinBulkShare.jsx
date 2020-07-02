@@ -17,8 +17,7 @@ const formatter = new Intl.NumberFormat('en-NG', {
 
 const ProductDetails = ({ match }) => {
 	const { data, loading } = UseFetch(`/${match.params.id}`);
-	const [open, setOpen] = React.useState(false);
-	const [diaglog, setDialog] = React.useState(false);
+	const [diaglog] = React.useState(false);
 	useEffect(() => {}, [diaglog]);
 	return (
 		<div className='product-details'>

@@ -8,7 +8,7 @@ import UseFetch from '../hooks/UseFetch';
 const BulkBuyProducts = () => {
 	const [state, dispatch] = useReducer(SearchByCategory, []);
 	const { searchApiCall } = useContext(contextApi);
-	const { data, loading } = UseFetch(`/all`);
+	const { data,  } = UseFetch(`/all`);
 	const [checked, setChecked] = React.useState({ meat: false, fish: false });
 	console.log(state);
 
@@ -16,22 +16,23 @@ const BulkBuyProducts = () => {
 		// setChecked('');
 		setChecked({ [event]: true });
 		console.log(checked);
+		searchApiCall()
 
 		// const fish = fishResult('/category/:category');
 		// dispatch({ type: 'FISH', payload: fish });
 		// setChecked(event.target.checked);
 	};
 
-	const handleChange1 = (event) => {
-		setChecked('');
-		setChecked(!checked);
-		console.log(checked);
+	// const handleChange1 = (event) => {
+	// 	setChecked('');
+	// 	setChecked(!checked);
+	// 	console.log(checked);
 
-		// const condi = Ingredient();
-		// dispatch({ type: 'INGREDIENT', payload: condi });
-		// setChecked(event.target.checked);
-		// console.log(checked);
-	};
+	// 	// const condi = Ingredient();
+	// 	// dispatch({ type: 'INGREDIENT', payload: condi });
+	// 	// setChecked(event.target.checked);
+	// 	// console.log(checked);
+	// };
 
 	useEffect(() => {
 		if (data) {

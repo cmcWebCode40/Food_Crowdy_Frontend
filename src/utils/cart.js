@@ -5,7 +5,7 @@ export function Cart(oldCart) {
 	this.add = function (item, id) {
 		var storedItem = this.items[id];
 		if (Object.keys(this.items).indexOf(id) === -1) {
-			var storedItem = (this.items[id] = { item: item, quantity: 0, price: 0 });
+			(this.items[id] = { item: item, quantity: 0, price: 0 });
 		}
 		storedItem.quantity++;
 		storedItem.price = storedItem.quantity * storedItem.item.price;

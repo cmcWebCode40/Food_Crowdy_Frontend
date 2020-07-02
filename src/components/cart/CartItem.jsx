@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { contextApi } from '../context/Context';
 // import Button from '@material-ui/core/Button';
 import meat from '../../images/meat.jpeg';

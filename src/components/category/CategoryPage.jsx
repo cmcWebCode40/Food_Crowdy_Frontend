@@ -76,7 +76,7 @@ const AllProduct = ({ match }) => {
 		// if (data) {
 		// 	dispatch({ type: 'FISH', payload: data });
 		// }
-	}, []);
+	});
 	return (
 		<>
 			<div className='shoping'>

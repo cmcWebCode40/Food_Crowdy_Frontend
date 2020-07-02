@@ -3,10 +3,10 @@ import Button from '@material-ui/core/Button';
 import Users from '../Users';
 import { Link } from 'react-router-dom';
 import BulkShareTab from './usersBulkshare/BulkShareTab';
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 
 const BulkShare = () => {
-	const [data, setData] = useState(true);
+	const [data] = useState(true);
 	return (
 		<div className='user-account'>
 			<Users bulkBuy={true} />

@@ -32,7 +32,7 @@ const Reviews = ({ productId, handleReview, alert }) => {
 		if (userId !== null) {
 			checkIfUserHasBoughtProduct(userId);
 		}
-	}, []);
+	});
 
 	return (
 		<div className='review'>

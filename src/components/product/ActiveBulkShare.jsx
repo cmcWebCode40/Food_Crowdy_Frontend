@@ -71,10 +71,9 @@ const formatter = new Intl.NumberFormat('en-NG', {
 
 const Products = (props) => {
 	const classes = useStyles();
-	const { updateCart, addItemToCart } = useContext(contextApi);
-	const [item, setItem] = useState(false);
+	const { updateCart } = useContext(contextApi);
+	const [item] = useState(false);
 	const { data, loading } = UseFetch('/all');
-	console.log(data);
 
 	React.useEffect(() => {}, [updateCart]);
 	// if (updateCart) {

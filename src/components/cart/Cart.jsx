@@ -10,7 +10,7 @@ import cartImage from '../../images/commerce.png';
 
 export default function Cart() {
 	const [totalAmount, setTotalAmount] = useState(0);
-	const [cartList, setCartList] = useState([]);
+	const [cartList] = useState([]);
 	const { updateCart, loadingCart } = useContext(contextApi);
 	const userID = getUserId();
 	const cart = JSON.parse(localStorage.getItem('_cart'));
